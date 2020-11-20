@@ -25,7 +25,7 @@ describe("AuditCase", () => {
     });
 
     afterAll(async () => {
-        //   await browser.close();
+        await browser.close();
     });
 
     test("Relatie van klant", async () => {
@@ -33,7 +33,7 @@ describe("AuditCase", () => {
         await ac.login(CONFIG);
 
         // test if we have a session
-        expect(await util.getPage().title()).toBe('AuditCase');
+        expect(await util.getMainPage().title()).toBe('AuditCase');
 
         // open relatie
         await ac.openRelatie(util);
@@ -47,10 +47,28 @@ describe("AuditCase", () => {
 
         await util.getPage().waitForNavigation();
 
+        // window title should be changed
+        expect(await util.getMainPage().title()).toBe('| Relatie van klant');
+
         // fill combobox
         await util.fillCombobox("CompanyDocIdRE", "slagerij");
         await util.fillCombobox("CompanyDocIdRE_1", "relatie 08-07-2019");
         await util.fillCombobox("SubjectRE", "anders");
+
+        // save document
+        await util.clickByTestId("SAVE_BUTTON");
+
+        // wait for saving
+        await util.getPage().waitForNavigation();
+
+        // click on 'back buton'
+        await util.clickByTestId("BACK_BUTTON");
+
+        // wait until popup is closed (100ms)
+        await util.getMainPage().waitForTimeout(100);
+
+        // window title should be back to 'AuditCase'
+        expect(await util.getMainPage().title()).toBe('Relatie');
 
     });
 });
