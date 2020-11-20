@@ -20,7 +20,7 @@ describe("AuditCase", () => {
         browser = await chromium.launch({ headless: CONFIG.HEADLESS });  //launch chrome
         browserContext = await browser.newContext();
         page = await browserContext.newPage();
-        util = new PageObjects(page);
+        util = new PageObjects(page, page);
         ac = new Modules(page);
     });
 
@@ -45,8 +45,13 @@ describe("AuditCase", () => {
         // switch naar frame 
         util = await util.switchToDefaultFrame();
 
-        // test if we have a session
-        expect(await util.getPage().title()).toBe('| Relatie van klant');
+        await util.getPage().waitForNavigation();
+
+        // fill combobox
+        await util.fillCombobox("CompanyDocIdRE", "slagerij");
+        await util.fillCombobox("CompanyDocIdRE_1", "relatie 08-07-2019");
+        await util.fillCombobox("SubjectRE", "anders");
+
     });
 });
 
