@@ -79,7 +79,7 @@
         "vuejs/@types/*.d.ts",
         "./**/*.ts",
         ".**/*.vue",
-        "vuejs/main.js", "config.js"
+        "vuejs/main.js", "config.js", "dossier/bewerkdossierstuk.ts.old", "dossier/test.ts.old"
     ],
     "exclude": [
         "node_modules"
