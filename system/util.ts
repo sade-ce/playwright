@@ -22,6 +22,7 @@ module.exports = class PageObjects {
      */
     async clickByTestId(testid: string) {
         await this.page.waitForSelector(`[data-test-id='${testid}']`);
+        await this.page.waitForTimeout(100);  //small wait needed (sometimes javascript need to run)
         await this.page.click(`[data-test-id='${testid}']`);
     }
 
@@ -33,6 +34,7 @@ module.exports = class PageObjects {
      */
     async clickByTitle(tekst: string) {
         await this.page.waitForSelector(`//a[contains(text(),'${tekst}')]`);
+        await this.page.waitForTimeout(100);  //small wait needed (sometimes javascript need to run)
         await this.page.click(`//a[contains(text(),'${tekst}')]`);
     }
 

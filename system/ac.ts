@@ -14,7 +14,7 @@ module.exports = class Modules {
     async login(config: any) {
         const navigationPromise = this.page.waitForNavigation()
 
-        await this.page.goto(config.SERVERURL);
+        await this.page.goto(config.baseUrl);
 
         await navigationPromise
 
@@ -38,6 +38,8 @@ module.exports = class Modules {
             util.clickByTestId("AC_HOOFDMENU"),
             util.clickByTitle("AuditCase"),
             util.clickByTitle("Relatie"),
+
+            this.page.waitForTimeout(300),  //wait for views to build
 
             navigationPromise
         ]);

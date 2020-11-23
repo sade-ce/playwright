@@ -1,13 +1,13 @@
 const PageObjects = require("../system/util");
 const Modules = require('../system/ac');
-const CONFIG = require('../system/config');
+const config = require('../config.js')
 
 let util = new PageObjects(page, page);
 let ac = new Modules(page);
 
 test("Relatie van klant", async () => {
     // login with jwt token
-    await ac.login(CONFIG);
+    await ac.login(config);
 
     // test if we have a session
     expect(await util.getMainPage().title()).toBe('AuditCase');
