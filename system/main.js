@@ -1,13 +1,13 @@
 
-const CONFIG = require('../system/config.js');
+const CONFIG = require('./config.js');
 
-const PageObjects = require("../system/util.js");
-const Modules = require('../system/ac.js');
+const PageObjects = require("./util.js");
+const Modules = require('./ac.js');
 
 
 const { chromium } = require('playwright');
 
-jest.setTimeout(30000);
+jest.setTimeout(60000); //global timeout in jest, every test may run as long as 1 minute
 
 describe("AuditCase", () => {
     let util;

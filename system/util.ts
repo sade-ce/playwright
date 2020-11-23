@@ -1,6 +1,8 @@
 module.exports = class PageObjects {
 
-    constructor(mainpage, page) {
+    private mainpage: any;
+    private page: any;
+    constructor(mainpage: any, page: any) {
         this.mainpage = mainpage;  //special for keyboard events
         this.page = page;
     }
@@ -18,7 +20,7 @@ module.exports = class PageObjects {
      * 
      * @param {*} testid  test id to find
      */
-    async clickByTestId(testid) {
+    async clickByTestId(testid: string) {
         await this.page.waitForSelector(`[data-test-id='${testid}']`);
         await this.page.click(`[data-test-id='${testid}']`);
     }
@@ -29,7 +31,7 @@ module.exports = class PageObjects {
      * @param {
      * } tekst 
      */
-    async clickByTitle(tekst) {
+    async clickByTitle(tekst: string) {
         await this.page.waitForSelector(`//a[contains(text(),'${tekst}')]`);
         await this.page.click(`//a[contains(text(),'${tekst}')]`);
     }
@@ -57,7 +59,7 @@ module.exports = class PageObjects {
      * @param {*} name  technical name of field
      * @param {*} theValue 
      */
-    async fillCombobox(name, theValue) {
+    async fillCombobox(name: string, theValue: string) {
         await this.wachtOpOverlay();
 
         // This is needed

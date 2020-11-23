@@ -1,16 +1,17 @@
-const CONFIG = require('./config.js');
-const fetch = require("node-fetch");
+//const CONFIG = require('./config.js');
+//const fetch = require("node-fetch");
 
 
 module.exports = class Modules {
 
-    constructor(page) {
+    private page: any;
+    constructor(page: any) {
         this.page = page;
     }
 
 
 
-    async login(config) {
+    async login(config: any) {
         const navigationPromise = this.page.waitForNavigation()
 
         await this.page.goto(config.SERVERURL);
@@ -30,7 +31,7 @@ module.exports = class Modules {
         await navigationPromise
     }
 
-    async openRelatie(util) {
+    async openRelatie(util: any) {
         const navigationPromise = this.page.waitForNavigation()
         return await Promise.all([
 
