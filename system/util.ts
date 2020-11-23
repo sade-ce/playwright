@@ -76,8 +76,8 @@ module.exports = class PageObjects {
         await this.page.waitForSelector(`[data-ac-dropdown-fieldid='${name}']`);
         await this.page.type(`[data-ac-dropdown-fieldid='${name}']`, theValue);
 
-        // wait for input2 to filter itself
-        await this.page.waitForTimeout(2000);
+        // wait until class 'select2-result' is found
+        await this.page.waitForSelector(`.select2-result`);
 
         // select the value
         await this.mainpage.keyboard.press('Enter');  //enter event only works from mainpage
